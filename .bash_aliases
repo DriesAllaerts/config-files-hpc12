@@ -15,7 +15,8 @@ alias byepy='conda deactivate'
 alias ju='jupyter notebook'
 alias of6='OpenFOAM-6-env'
 
-alias scratch='cd /home/scratch/dallaerts'
+export SCRATCH=/home/scratch/dallaerts
+alias scratch='cd $SCRATCH'
 
 alias showqu='showq -u $USER'
 alias qstatu='qstat -u $USER'
