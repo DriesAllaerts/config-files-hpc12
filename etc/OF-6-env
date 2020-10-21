@@ -44,9 +44,25 @@ OpenFOAM-6-env()
    # For wmake compiling.
    export WM_NCOMPPROCS=24
    export WM_COLOURS="white blue green cyan red magenta yellow"
-   
+
    # Set the SOWFA installation directory.
-   export SOWFA_DIR=$sowfa_loc/SOWFA-$OPENFOAM_VERSION
+   if [ $# == 0 ]; then
+       export SOWFA_NAME=dev
+   else
+       export SOWFA_NAME=$1
+   fi
+
+   export SOWFA_DIR=$sowfa_loc/SOWFA-$OPENFOAM_VERSION-$SOWFA_NAME
    export LD_LIBRARY_PATH=$SOWFA_DIR/lib/$WM_OPTIONS:$OPENFAST_DIR/lib:$LD_LIBRARY_PATH
    export PATH=$SOWFA_DIR/applications/bin/$WM_OPTIONS:$PATH
+
+   if [[ "$SOWFA_NAME" == "jsteiner" ]]; then
+       export LIBRARY_PATH=$LD_LIBRARY_PATH:$LIBRARY_PATH
+   fi
+
+   if [ ! -d $SOWFA_DIR ]; then
+        echo "Warning: SOWFA directory $SOWFA_DIR not found"
+   else
+        echo "Using SOWFA distribution in $SOWFA_DIR"
+   fi
 }
