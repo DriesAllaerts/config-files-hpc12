@@ -21,3 +21,5 @@ alias scratch='cd $SCRATCH'
 alias showqu='showq -u $USER'
 alias qstatu='qstat -u $USER'
 alias qsubi='qsub -I -q awep-test -lwalltime=1:00:00,nodes=1:ppn=32'
+
+alias touchall='find . -type f -exec touch {} +'
